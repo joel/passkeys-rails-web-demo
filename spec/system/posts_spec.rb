@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Posts" do
+RSpec.describe "Posts", type: :system do
   let!(:user) { create(:user) }
 
   it "allows a user to create a new post" do
