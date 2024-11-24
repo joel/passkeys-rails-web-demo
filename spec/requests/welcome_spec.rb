@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Welcomes" do
+RSpec.describe "Welcomes", type: :request do
   describe "GET /home" do
     it "returns http success" do
       get "/welcome/home"
