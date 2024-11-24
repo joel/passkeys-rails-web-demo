@@ -41,8 +41,9 @@ module PasskeysRailsWebDemo
 
     logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
+    config.log_tags = [:request_id]
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
-    config.log_level = ENV.fetch("LOG_LEVEL", "info").to_sym
+    config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
 
     config.active_record.schema_format = :ruby # :sql
   end
