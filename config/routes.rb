@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount PasskeysRails::Engine => "/passkeys"
 
+  resource :registration, only: %i[new create]
+
   resources :posts
   resources :users
 

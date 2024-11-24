@@ -1,0 +1,20 @@
+
+<div class="mx-auto md:w-2/3 w-full">
+
+  <h1 class="font-bold text-4xl">New registration</h1>
+
+  <%= form_with url: "#", local: true, id: "new-registration", data: { turbo: false, controller: "registration" }, class: "contents" do |form| %>
+    <div id="error_explanation" class="hidden bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <ul></ul>
+    </div>
+
+    <div class="my-5">
+      <%= form.label :username %>
+      <%= form.text_field :username, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { registration_target: "username" }, value: @registration.username %>
+    </div>
+
+    <div class="inline">
+      <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer", data: { action: "registration#register" } %>
+    </div>
+  <% end %>
+</div>

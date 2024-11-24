@@ -1,4 +1,4 @@
-require 'passkeys-rails'
+require "passkeys-rails"
 
 PasskeysRails.config do |c|
   # Secret used to encode the auth token.
@@ -7,7 +7,7 @@ PasskeysRails.config do |c|
   # Default is the application's `secret_key_base`.  You can change it below
   # and use your own secret key.
   #
-  # c.auth_token_secret = '9e2f988f50cd6ece7fe683b3901cdc6fdb32ccb226e77f4279d12613546b8ba3c58cf95110bb139ac08529e22ef94ce389690c65953b06545ede79d0b21a61bc'
+  # c.auth_token_secret = '6ccfb6daf8b2238dd8be0149fe627b5658f79e171a1439c0fea05b939fe880f9d1789bf1cdf5de74d4b54070d622cddd4dbad1ab6987055b780a2a5818258d4b'
 
   # Algorithm used to generate the auth token.
   # Changing this value will invalidate all tokens that have been fetched
@@ -44,7 +44,7 @@ PasskeysRails.config do |c|
   # This should be an array of symbols or strings,
   # for example: %w[User AdminUser]
   #
-  # c.class_whitelist = nil
+  c.class_whitelist = %w[User]
 
   # To subscribe to various events in PasskeysRails, use the subscribe method.
   # It can be called multiple times to subscribe to more than one event.
@@ -57,9 +57,9 @@ PasskeysRails.config do |c|
   # Each event will include the event name, current agent and http request.
   #
   # For example:
-  # c.subscribe(:did_register) do |event, agent, request|
-  #   puts("#{event} | #{agent.id} | #{request.headers}")
-  # end
+  c.subscribe(:did_register) do |event, agent, request|
+    puts("#{event} | #{agent.id} | #{request.headers}")
+  end
 
   # PasskeysRails uses webauthn to help with the protocol.
   # The following settings are passed throught webauthn.
@@ -67,10 +67,14 @@ PasskeysRails.config do |c|
 
   # This value needs to match `window.location.origin` evaluated by
   # the User Agent during registration and authentication ceremonies.
-  # c.wa_origin = ENV['DEFAULT_HOST'] || https://myapp.mydomain.com
+  c.wa_origin = if ENV["NGROK_DOMAIN"]
+                  "https://#{ENV["NGROK_DOMAIN"]}.ngrok-free.app"
+                else
+                  ENV.fetch("DEFAULT_HOST") { "https://webauthn.workanywhere.app" }
+                end
 
   # Relying Party name for display purposes
-  # c.wa_relying_party_name = "My App Name"
+  c.wa_relying_party_name = "Passkeys Rails Demo"
 
   # Optionally configure a client timeout hint, in milliseconds.
   # This hint specifies how long the browser should wait for any
@@ -92,7 +96,7 @@ PasskeysRails.config do |c|
   # used in your client-side (user agent) code before sending the credential to the server.
   # Supported values: `:base64url` (default), `:base64` or `false` to disable all encoding.
   #
-  # c.wa_encoding = :base64url
+  c.wa_encoding = :base64url
 
   # Possible values: "ES256", "ES384", "ES512", "PS256", "PS384", "PS512", "RS256", "RS384", "RS512", "RS1"
   # Default: ["ES256", "PS256", "RS256"]
