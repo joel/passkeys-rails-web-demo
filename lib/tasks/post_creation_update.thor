@@ -69,11 +69,11 @@ module PostCreation
         run_with_clean_bundler_env("SKIP=RailsSchemaUpToDate git apply patches/fix_test_suite.patch")
         commit "Fix Test Suite"
 
-        insert_into_file "app/models/post.rb", "  validates :title, presence: true\n", :after => "belongs_to :user\n"
+        insert_into_file "app/models/post.rb", "  validates :title, presence: true\n", after: "belongs_to :user\n"
         commit "Add validation to post model"
 
         if adapter_name !~ /PostgreSQL/
-          insert_into_file "app/models/post.rb", "  attribute :user_id, :uuid_v7\n", :after => "belongs_to :user\n"
+          insert_into_file "app/models/post.rb", "  attribute :user_id, :uuid_v7\n", after: "belongs_to :user\n"
           commit "Declare Foreign Key Type"
         end
 
@@ -107,9 +107,9 @@ module PostCreation
       def run_with_clean_bundler_env(cmd)
         success = if defined?(Bundler)
                     Bundler.with_original_env { run(cmd) }
-                  else
+        else
                     run(cmd)
-                  end
+        end
 
         return true if success
 
