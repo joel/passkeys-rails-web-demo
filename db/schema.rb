@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_24_092946) do
+ActiveRecord::Schema[8.0].define(version: 2024_11_24_130248) do
+  create_table "passkeys_rails_agents", force: :cascade do |t|
+    t.string "username", null: false
+    t.string "authenticatable_type"
+    t.integer "authenticatable_id"
+    t.string "webauthn_identifier"
+    t.datetime "registered_at"
+    t.datetime "last_authenticated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authenticatable_type", "authenticatable_id"], name: "index_passkeys_rails_agents_on_authenticatable", unique: true
+    t.index ["username"], name: "index_passkeys_rails_agents_on_username", unique: true
+  end
+
+  create_table "passkeys_rails_passkeys", force: :cascade do |t|
+    t.string "identifier"
+    t.string "public_key"
+    t.integer "sign_count"
+    t.integer "agent_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["agent_id"], name: "index_passkeys_rails_passkeys_on_agent_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -26,5 +49,6 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_24_092946) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "passkeys_rails_passkeys", "passkeys_rails_agents", column: "agent_id"
   add_foreign_key "posts", "users"
 end
