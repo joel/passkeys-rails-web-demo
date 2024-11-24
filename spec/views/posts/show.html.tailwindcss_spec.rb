@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "posts/show" do
+RSpec.describe "posts/show", type: :view do
   before do
     assign(:post, create(:post,
                          title: "Title",

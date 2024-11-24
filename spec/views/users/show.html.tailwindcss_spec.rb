@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "users/show" do
+RSpec.describe "users/show", type: :view do
   before do
     assign(:user, User.create!(
                     name: "Name"

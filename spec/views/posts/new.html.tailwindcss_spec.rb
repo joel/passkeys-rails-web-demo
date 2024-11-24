@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "posts/new" do
+RSpec.describe "posts/new", type: :view do
   before do
     assign(:post, Post.new(
                     title: "MyString",

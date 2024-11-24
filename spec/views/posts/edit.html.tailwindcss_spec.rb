@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "posts/edit" do
+RSpec.describe "posts/edit", type: :view do
   let(:post) do
     create(:post)
   end
