@@ -1,7 +1,7 @@
 # Source: https://github.com/rspec/rspec-rails/blob/6-1-maintenance/lib/generators/rspec/scaffold/templates/routing_spec.rb
 require "rails_helper"
 
-RSpec.describe UsersController do
+RSpec.describe UsersController, type: :routing do
   describe "routing!!!" do
     it "routes to #index" do
       expect(get: "/users").to route_to("users#index")
