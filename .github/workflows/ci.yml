@@ -4,6 +4,33 @@ on: [ push ]
 
 jobs:
 
+  test:
+
+    runs-on: ubuntu-latest
+
+    needs: lint
+
+    steps:
+      -
+        name: Checkout Source Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: '1'
+      -
+        name: Install ruby 3.3.6
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.6
+      -
+        name: "Install Dependencies"
+        run: bundle install --jobs 4 --retry 3
+      -
+        name: "Initialize Database"
+        run: bundle exec rake db:create db:schema:load
+      -
+        name: "Run Tests"
+        run: TEST_BROWSER=rack_test bundle exec rake
+
   lint:
 
     runs-on: ubuntu-latest
@@ -19,6 +46,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.3.6
+          bundler-cache: true
       -
         name: "Lint / rubocop"
         run: |
@@ -45,12 +73,3 @@ jobs:
         run: |
           gem install bundle-audit
           bundle-audit check --update -v
-      -
-        name: "Install Dependencies"
-        run: bundle install --jobs 4 --retry 3
-      -
-        name: "Initialize Database"
-        run: bundle exec rake db:create db:schema:load
-      -
-        name: "Run Tests"
-        run: TEST_BROWSER=rack_test bundle exec rake
