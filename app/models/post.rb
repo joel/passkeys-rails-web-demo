@@ -4,6 +4,4 @@
 class ::Post < ApplicationRecord
   belongs_to :user
   validates :title, presence: true
-
-  attribute :user_id, :uuid_v7
 end
