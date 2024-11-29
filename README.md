@@ -1,24 +1,19 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Start ngrok
 
-Things you may want to cover:
+```
+ngrok http 3005
+```
 
-* Ruby version
+Start server
 
-* System dependencies
+```
+RAILS_LOG_LEVEL=debug NGROK_DOMAIN=82fc-213-94-41-19 rails s -p 3005
+```
 
-* Configuration
+Open the app
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+https://82fc-213-94-41-19.ngrok-free.app/registration/new
+```
