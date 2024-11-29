@@ -24,13 +24,11 @@
   </head>
 
   <body>
+    <%= render partial: "shared/headers" %>
     <main class="container mx-auto mt-28 px-5 flex">
       <ul class="flex space-x-4">
         <li>
-          <%= link_to "Register", new_registration_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
-        </li>
-        <li>
-          <%= link_to "Users", users_path, class: "block px-4 py-2 text-sm text-gray-700", role: "menuitem", tabindex: "-1", id: "user-menu-item-1" %>
+          <%= link_to "Register", new_registration_path, class: "block px-4 py-2 text-sm text-gray-700 mr-10", role: "menuitem", tabindex: "-1", id: "user-menu-item-0" %>
         </li>
       </ul>
 

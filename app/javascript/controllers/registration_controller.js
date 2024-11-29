@@ -22,8 +22,7 @@ export default class extends Controller {
       method: "POST",
       headers: {
         "Accept": "application/json",
-        "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({ username: username })
     })
