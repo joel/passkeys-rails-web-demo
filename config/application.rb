@@ -46,6 +46,5 @@ module PasskeysRailsWebDemo2
     config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "debug").to_sym
 
     config.active_record.schema_format = :ruby # :sql
-
   end
 end
