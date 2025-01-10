@@ -33,12 +33,8 @@
           </h2>
         </div>
 
-        <div class="mt-4 flex md:ml-4 md:mt-0">
-          <button
-            type="button"
-            class="rounded-lg py-3 px-5 bg-blue-100 font-medium mr-1.5">
-            Authenticate
-          </button>
+        <div class="mt-4 flex md:ml-4 md:mt-0" data-controller="session">
+          <%= link_to "Authenticate", "#", class: "rounded-lg py-3 px-5 bg-blue-100 block font-medium mr-1.5", data: { action: "click->session#authenticate" } %>
           <%= link_to "Register", new_registration_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
         </div>
       </div>
