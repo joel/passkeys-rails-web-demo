@@ -53,6 +53,10 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+# joel:Supporting-Rails-8
+# https://github.com/alliedcode/passkeys-rails/pull/7
+gem "passkeys-rails", path: "../passkeys-rails" # , github: "joel/passkeys-rails"
+
 group :development do
   gem "bundle-audit", require: false
   gem "erb_lint", require: false
