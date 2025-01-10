@@ -1,5 +1,7 @@
-PATH
-  remote: ../passkeys-rails
+GIT
+  remote: https://github.com/joel/passkeys-rails.git
+  revision: 83327e181de03a66ebef70a5ed2e7424d732d43a
+  branch: wip-fix
   specs:
     passkeys-rails (0.3.3)
       cbor (~> 0.5.9.8)
