@@ -5,8 +5,7 @@
 #
 class CreateUsers < ActiveRecord::Migration[8.0]
   def change
-    create_table :users, id: false do |t|
-      t.binary :id, limit: 16, null: false, index: { unique: true }, primary_key: true
+    create_table :users do |t|
       t.string :name
 
       t.timestamps

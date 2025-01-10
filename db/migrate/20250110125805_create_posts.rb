@@ -5,11 +5,10 @@
 #
 class CreatePosts < ActiveRecord::Migration[8.0]
   def change
-    create_table :posts, id: false do |t|
-      t.binary :id, limit: 16, null: false, index: { unique: true }, primary_key: true
+    create_table :posts do |t|
       t.string :title
       t.text :body
-      t.references :user, foreign_key: true, index: true, type: :binary, limit: 16, null: false
+      t.references :user, foreign_key: true, index: true, null: false
 
       t.timestamps
     end

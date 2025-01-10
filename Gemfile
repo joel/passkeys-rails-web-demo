@@ -53,8 +53,6 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "uuid_v7" # , path: "~/WorkSpace/Gems/UuidV7/uuid_v7"
-
 group :development do
   gem "bundle-audit", require: false
   gem "erb_lint", require: false
